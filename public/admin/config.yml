@@ -2,7 +2,8 @@ backend:
   name: github
   repo: dangphucprnt/truth-blog
   branch: main
-  auth_type: implicit
+  base_url: https://decap-oauth.dangphucfb.workers.dev
+  auth_endpoint: /auth
 
 media_folder: "public/blog-assets"
 public_folder: "/blog-assets"
