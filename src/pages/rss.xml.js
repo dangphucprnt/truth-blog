@@ -4,7 +4,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 export async function GET(context) {
 	const posts = await getCollection('blog');
-	// Sắp xếp bài viết mới nhất lên đầu mà không lọc bỏ bài
 	const sortedPosts = posts.sort(
 		(a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 	);
@@ -14,9 +13,9 @@ export async function GET(context) {
 		description: SITE_DESCRIPTION,
 		site: context.site,
 		items: sortedPosts.map((post) => ({
-			title: post.data.title,
+			title: post.data.title || 'Không có tiêu đề',
 			pubDate: post.data.pubDate,
-			description: post.data.description,
+			description: post.data.description || 'Chưa có mô tả cho bài viết này',
 			link: `/blog/${post.slug}/`,
 		})),
 	});
