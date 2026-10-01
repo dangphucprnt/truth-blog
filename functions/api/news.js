@@ -6,13 +6,8 @@ function safeUrl(value) {
     return url;
 }
 export async function onRequest({request, env}) {
-    const origin = request.headers.get('Origin') || '';
-    const local = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
-    const cors = origins.has(origin) || local ? origin : '';
-    const headers = {'Content-Type':'application/json; charset=utf-8', 'Vary':'Origin', 'Cache-Control':'no-store'};
-    if (cors) headers['Access-Control-Allow-Origin'] = cors;
+    const headers = {'Content-Type':'application/json; charset=utf-8', 'Access-Control-Allow-Origin':'*', 'Cache-Control':'no-store'};
     const reply = (data, status = 200) => Response.json(data, {status, headers});
-    if (origin && !cors) return reply({error:'Origin not allowed'},403);
     if (request.method !== 'GET') return reply({error:'Method not allowed'},405);
     try {
         let url = safeUrl(new URL(request.url).searchParams.get('url'));
