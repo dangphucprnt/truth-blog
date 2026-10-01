@@ -2,8 +2,7 @@ backend:
   name: github
   repo: dangphucprnt/truth-blog
   branch: main
-  base_url: https://decap-bridge.vercel.app
-  auth_endpoint: /api/auth
+  auth_type: implicit
 
 media_folder: "public/blog-assets"
 public_folder: "/blog-assets"
