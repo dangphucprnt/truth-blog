@@ -5,7 +5,6 @@ import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/blog-placeholder-1.jpg';
 import { SITE_TITLE } from '../consts';
-import { Font } from 'astro:assets';
 
 interface Props {
 	title: string;
@@ -32,7 +31,26 @@ const { title, description, image = FallbackImage } = Astro.props;
 />
 <meta name="generator" content={Astro.generator} />
 
-<Font cssVariable="--font-atkinson" preload />
+<!-- Load the existing local font directly, independently of Astro's Font registry. -->
+<style is:global>
+	@font-face {
+		font-family: 'Atkinson';
+		src: url('../assets/fonts/atkinson-regular.woff') format('woff');
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Atkinson';
+		src: url('../assets/fonts/atkinson-bold.woff') format('woff');
+		font-style: normal;
+		font-weight: 700;
+		font-display: swap;
+	}
+	:root {
+		--font-atkinson: 'Atkinson', sans-serif;
+	}
+</style>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
