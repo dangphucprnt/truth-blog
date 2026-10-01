@@ -15,8 +15,8 @@ export async function GET(context) {
 		items: sortedPosts.map((post) => ({
 			title: post.data.title || 'Không có tiêu đề',
 			pubDate: post.data.pubDate,
-			description: post.data.description || '',
-			link: `/blog/${post.id}/`,
+			description: post.data.description || 'Chưa có mô tả cho bài viết này',
+			link: `/blog/${post.slug}/`,
 		})),
 	});
 }
