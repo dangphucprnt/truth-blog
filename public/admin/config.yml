@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: dangphucprnt/truth-blog
+  branch: main
+
+media_folder: "public/blog-assets"
+public_folder: "/blog-assets"
+
+collections:
+  - name: "blog"
+    label: "Bài Viết"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tiêu đề", name: "title", widget: "string" }
+      - { label: "Mô tả ngắn", name: "description", widget: "string" }
+      - { label: "Ngày xuất bản", name: "pubDate", widget: "datetime" }
+      - { label: "Ảnh đại diện", name: "heroImage", widget: "image", required: false }
+      - { label: "Nội dung bài viết", name: "body", widget: "markdown" }
