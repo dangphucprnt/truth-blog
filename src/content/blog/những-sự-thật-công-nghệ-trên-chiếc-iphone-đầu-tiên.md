@@ -30,12 +30,12 @@ Chúng ta của hiện tại, 19 năm 4 tháng tính từ thời điểm đó. H
    Đa số điện thoại thời 2007 có vỏ hoàn toàn bằng nhựa cứng hoặc nhựa nhám. Dù Nokia N95 hay Sony Ericsson Walkman series rất mạnh về giải trí, giao diện quản lý nhạc và cảm giác cầm nắm cao cấp của iPhone vẫn tạo ra sự khác biệt rõ rệt.
 6. #### Free Push IMAP email
 
-   Năm 2007, khái niệm "Push Email" (Email đẩy ngay lập tức) là một đặc quyền cao cấp và vô cùng đắt đỏ, còn giao thức IMAP hoàn toàn vượt trội so với POP3 truyền thống.<br>
-   Tại thời điểm ra mắt, Apple đã hợp tác độc quyền với Yahoo! để cung cấp dịch vụ Free Push IMAP Email cho toàn bộ người dùng iPhone. <br>
-Giao thức IMAP (Internet Message Access Protocol): Thay vì giao thức POP3 phổ biến thời đó (tải mail về máy rồi xóa/lưu cục bộ, không đồng bộ trạng thái đã đọc/xóa trên các thiết bị khác), IMAP lưu trữ toàn bộ thư và thư mục trực tiếp trên máy chủ. Bạn đọc, xóa hay chuyển thư mục trên iPhone thì trên máy tính cũng tự động cập nhật đồng bộ. <br>
-Công nghệ "Push" (Đẩy theo thời gian thực): Máy chủ chủ động "đẩy" email mới về điện thoại ngay giây phút nó cập nhật, kèm theo âm thanh thông báo. Người dùng không cần phải bấm nút Refresh/Fetch hoặc cài đặt hẹn giờ cứ 15–30 phút cho máy tự kiểm tra hộp thư một lần (vừa chậm vừa tốn pin/dung lượng 2G).
+      Năm 2007, khái niệm "Push Email" (Email đẩy ngay lập tức) là một đặc quyền cao cấp và vô cùng đắt đỏ, còn giao thức IMAP hoàn toàn vượt trội so với POP3 truyền thống.<br>
+      Tại thời điểm ra mắt, Apple đã hợp tác độc quyền với Yahoo! để cung cấp dịch vụ Free Push IMAP Email cho toàn bộ người dùng iPhone. <br>
+   Giao thức IMAP (Internet Message Access Protocol): Thay vì giao thức POP3 phổ biến thời đó (tải mail về máy rồi xóa/lưu cục bộ, không đồng bộ trạng thái đã đọc/xóa trên các thiết bị khác), IMAP lưu trữ toàn bộ thư và thư mục trực tiếp trên máy chủ. Bạn đọc, xóa hay chuyển thư mục trên iPhone thì trên máy tính cũng tự động cập nhật đồng bộ. <br>
+   Công nghệ "Push" (Đẩy theo thời gian thực): Máy chủ chủ động "đẩy" email mới về điện thoại ngay giây phút nó cập nhật, kèm theo âm thanh thông báo. Người dùng không cần phải bấm nút Refresh/Fetch hoặc cài đặt hẹn giờ cứ 15–30 phút cho máy tự kiểm tra hộp thư một lần (vừa chậm vừa tốn pin/dung lượng 2G).
 
-<div align = "center">
-Nguồn Trích Dẫn:<br>
-[Wikipedia](https://en.wikipedia.org/wiki/IPhone_(1st_generation)#:~:text=Steve%20Ballmer%2C%20the%20former%20CEO%20of%20Microsoft%2C,a%20carrier%20subsidy%20and%20a%20carrier%20plan.)<br>
+<div align="center">
+  Nguồn Trích Dẫn:<br>
+  <a href="https://en.wikipedia.org/wiki/IPhone_(1st_generation)#:~:text=Steve%20Ballmer%2C%20the%20former%20CEO%20of%20Microsoft%2C,a%20carrier%20subsidy%20and%20a%20carrier%20plan.">Wikipedia - iPhone (1st generation)</a>
 </div>
