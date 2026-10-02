@@ -9,11 +9,24 @@ import Header from '../components/Header.astro';
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const pageURL = new URL(Astro.url.pathname, Astro.site).href;
+const articleSchema = {
+    '@context': 'https://schema.org', '@type': 'BlogPosting',
+    headline: title, description, url: pageURL,
+    mainEntityOfPage: pageURL, inLanguage: 'vi-VN',
+    datePublished: pubDate.toISOString(),
+    dateModified: (updatedDate || pubDate).toISOString(),
+    ...(heroImage ? {image: new URL(heroImage.src, Astro.site).href} : {}),
+    publisher: {'@type': 'Organization', name: 'Truth News', url: 'https://truth.com.vn/'},
+};
 ---
 
-<html lang="en">
+<html lang="vi">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} image={heroImage} type="article" />
+        <meta property="article:published_time" content={pubDate.toISOString()} />
+        {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
+        <script type="application/ld+json" set:html={JSON.stringify(articleSchema).replace(/</g, '\\u003c')} />
 		<style>
 			main {
 				width: calc(100% - 2em);
