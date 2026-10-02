@@ -45,11 +45,11 @@ const articleSchema = {
           </div>
           <p class="editorial-status" role="status" aria-live="polite"></p>
         </header>
-        {hero && <figure class="editorial-hero">
+        {hero && <figure class="editorial-hero hero-image">
           <img src={hero} alt={heroAlt || title} width="1600" height="1000" fetchpriority="high" />
           {caption && <figcaption>{caption}</figcaption>}
         </figure>}
-        <div id="article-body" class="editorial-body" tabindex="-1"><slot /></div>
+        <div id="article-body" class="editorial-body prose" tabindex="-1"><slot /></div>
       </article>
     </main>
     <Footer />
