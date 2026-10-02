@@ -9,7 +9,7 @@ import { SITE_TITLE } from '../consts';
 interface Props {
 	title: string;
 	description: string;
-	image?: ImageMetadata;
+	image?: ImageMetadata | string;
 	type?: 'website' | 'article';
 }
 
@@ -67,11 +67,11 @@ const { title, description, image = FallbackImage, type = 'website' } = Astro.pr
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, canonicalURL)} />
+<meta property="og:image" content={new URL(typeof image === 'string' ? image : image.src, canonicalURL)} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={new URL(image.src, canonicalURL)} />
+<meta name="twitter:image" content={new URL(typeof image === 'string' ? image : image.src, canonicalURL)} />

@@ -1,0 +1,76 @@
+/* All content rules are scoped to this layout. No external fonts or CSS library. */
+.editorial-page {
+  --ink: #202124;
+  --muted: #64676b;
+  --accent: #176b91;
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.editorial-page *, .editorial-page *::before, .editorial-page *::after { box-sizing: border-box; }
+.editorial-page a { color: var(--accent); text-underline-offset: .2em; }
+.editorial-page :focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+.editorial-skip { position: absolute; left: 16px; top: -100px; padding: 12px; background: #fff; z-index: 10; }
+.editorial-skip:focus { top: 12px; }
+.editorial-masthead { border-bottom: 1px solid #e8e9eb; }
+.editorial-masthead nav { max-width: 1136px; margin: auto; padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; gap: 24px; font-size: 14px; }
+.editorial-masthead a { color: var(--ink); text-decoration: none; }
+.editorial-brand { font-size: 19px; font-weight: 700; letter-spacing: -.025em; }
+.editorial-heading { max-width: 760px; margin: auto; padding: 76px 0 28px; }
+.editorial-category { margin: 0 0 10px; color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.editorial-heading time { color: var(--muted); font-size: 15px; }
+.editorial-heading h1 { margin: 24px 0; font-size: clamp(36px, 5.4vw, 64px); line-height: 1.09; letter-spacing: -.045em; font-weight: 750; overflow-wrap: break-word; text-wrap: balance; }
+.editorial-deck { margin: 0 0 28px; color: var(--muted); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; letter-spacing: -.015em; }
+.editorial-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.editorial-actions button, .editorial-actions a { border: 1px solid #dedfe2; border-radius: 999px; background: #fff; padding: 11px 16px; color: var(--ink); font: inherit; font-size: 14px; line-height: 1.4; text-decoration: none; cursor: pointer; min-height: 44px; }
+.editorial-actions [hidden] { display: none; }
+.editorial-actions button:hover, .editorial-actions a:hover { background: #f3f5f6; }
+.editorial-status { min-height: 1.4em; margin: 10px 0 0; color: var(--muted); font-size: 13px; }
+.editorial-hero { max-width: 1080px; margin: 0 auto 54px; }
+.editorial-hero img { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: cover; border-radius: 12px; background: #f1f3f4; }
+.editorial-hero figcaption, .editorial-body figcaption { margin-top: 14px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.editorial-body { max-width: 740px; margin: auto; font-size: 20px; line-height: 1.75; letter-spacing: -.012em; overflow-wrap: break-word; }
+.editorial-body p { margin: 0 0 1.45em; }
+.editorial-body h2 { margin: 2em 0 .65em; font-size: clamp(28px, 3.2vw, 36px); line-height: 1.2; letter-spacing: -.03em; }
+.editorial-body h3 { margin: 1.7em 0 .65em; font-size: 25px; line-height: 1.3; letter-spacing: -.02em; }
+.editorial-body h4, .editorial-body h5, .editorial-body h6 { font-size: 21px; line-height: 1.4; margin: 1.5em 0 .6em; }
+.editorial-body ul, .editorial-body ol { padding-left: 1.4em; margin: 0 0 1.5em; }
+.editorial-body li { padding-left: .2em; margin: .45em 0; }
+.editorial-body blockquote { margin: 2em 0; padding: .2em 0 .2em 24px; border-left: 3px solid var(--accent); font-size: clamp(22px, 2.5vw, 28px); line-height: 1.5; letter-spacing: -.025em; }
+.editorial-body blockquote p { margin: 0; }
+.editorial-body img { display: block; max-width: 100%; height: auto; border-radius: 8px; margin: 2em auto .8em; }
+.editorial-body figure { margin: 2em 0; }
+.editorial-body figure img { width: 100%; margin: 0; }
+.editorial-body hr { border: 0; border-top: 1px solid #e3e5e7; margin: 2.5em 0; }
+.editorial-body code { font-size: .85em; background: #f3f5f6; border-radius: 4px; padding: .15em .3em; }
+.editorial-body pre { overflow-x: auto; padding: 20px; border-radius: 8px; background: #f3f5f6; }
+.editorial-body pre code { padding: 0; }
+.editorial-footer { max-width: 740px; margin: 64px auto 0; padding: 28px 0 48px; border-top: 1px solid #e3e5e7; font-size: 15px; }
+@media (max-width: 1136px) { .editorial-hero { margin-left: 28px; margin-right: 28px; } }
+@media (max-width: 816px) {
+  .editorial-heading, .editorial-body, .editorial-footer { margin-left: 28px; margin-right: 28px; }
+}
+@media (max-width: 600px) {
+  .editorial-masthead nav { padding: 18px 20px; gap: 16px; }
+  .editorial-brand { font-size: 17px; }
+  .editorial-heading, .editorial-body, .editorial-footer { margin-left: 20px; margin-right: 20px; }
+  .editorial-heading { padding-top: 44px; padding-bottom: 20px; }
+  .editorial-heading h1 { margin-top: 20px; }
+  .editorial-hero { margin: 0 20px 36px; }
+  .editorial-hero img { border-radius: 8px; }
+  .editorial-body { font-size: 18px; line-height: 1.7; }
+  .editorial-body blockquote { padding-left: 18px; }
+  .editorial-footer { margin-top: 44px; }
+}
+
+/* Override the existing blog's global main rule only on article pages. */
+.editorial-page .editorial-main { width: 100%; max-width: none; margin: 0; padding: 0 0 64px; }
+.editorial-page .editorial-heading { box-shadow: none; background: transparent; }
+.editorial-page .editorial-heading h1 { color: var(--ink); }
+.editorial-page .editorial-category { color: #176b91; }
+.editorial-page .editorial-body a { color: #176b91; }
+.editorial-page .editorial-body blockquote { border-color: #176b91; }
+.editorial-page .editorial-body table { display: block; overflow-x: auto; border-collapse: collapse; }
+.editorial-page .editorial-body th, .editorial-page .editorial-body td { padding: 10px 14px; border: 1px solid #e3e5e7; text-align: left; }

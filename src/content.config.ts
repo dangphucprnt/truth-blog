@@ -13,7 +13,11 @@ const blog = defineCollection({
 			// Transform string to Date object
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
-			heroImage: z.optional(image()),
+			// CMS uploads use /blog-assets/...; existing source images remain supported.
+            heroImage: z.union([z.string().regex(/^(?:\/(?!\/)|https?:\/\/)/), image()]).optional(),
+            category: z.string().optional(),
+            heroAlt: z.string().optional(),
+            caption: z.string().optional(),
 		}),
 });
 

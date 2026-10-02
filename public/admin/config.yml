@@ -19,4 +19,7 @@ collections:
       - { label: "Mô tả ngắn", name: "description", widget: "string" }
       - { label: "Ngày xuất bản", name: "pubDate", widget: "datetime" }
       - { label: "Ảnh đại diện", name: "heroImage", widget: "image", required: false }
+      - { label: "Chuyên mục", name: "category", widget: "string", required: false, default: "Câu chuyện" }
+      - { label: "Mô tả ảnh đại diện", name: "heroAlt", widget: "string", required: false, hint: "Mô tả ngắn nội dung ảnh để hỗ trợ người đọc." }
+      - { label: "Chú thích dưới ảnh", name: "caption", widget: "string", required: false }
       - { label: "Nội dung bài viết", name: "body", widget: "markdown" }
