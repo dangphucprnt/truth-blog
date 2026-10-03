@@ -20,7 +20,7 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - label: "Chủ đề"
+      - label: "Chuyên mục"
         name: "category"
         widget: "select"
         default: "auto"
@@ -34,4 +34,6 @@ collections:
       - { label: "Mô tả ngắn", name: "description", widget: "string" }
       - { label: "Ngày xuất bản", name: "pubDate", widget: "datetime" }
       - { label: "Ảnh đại diện", name: "heroImage", widget: "image", required: false }
+      - { label: "Mô tả ảnh đại diện", name: "heroAlt", widget: "string", required: false }
+      - { label: "Chú thích dưới ảnh", name: "heroCaption", widget: "string", required: false }
       - { label: "Nội dung bài viết", name: "body", widget: "markdown" }
