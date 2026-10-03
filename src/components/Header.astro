@@ -5,8 +5,10 @@ import HeaderLink from './HeaderLink.astro';
 <header>
 	<nav>
 		<div class="internal-links">
-			<a href="https://truth.com.vn" class="main-site-link">Trang chủ</a>
-			<HeaderLink href="/">Blog</HeaderLink>
+			<HeaderLink href="/">Trang chủ</HeaderLink>
+            <HeaderLink href="/iphone-cong-nghe/">iPhone - Công nghệ</HeaderLink>
+            <HeaderLink href="/3d-tech/">3D Tech</HeaderLink>
+            <HeaderLink href="/xa-hoi/">Xã Hội</HeaderLink>
 		</div>
 	</nav>
 </header>
@@ -26,6 +28,8 @@ import HeaderLink from './HeaderLink.astro';
 		display: flex;
 		align-items: center;
 		gap: 0.5em;
+        flex-wrap: wrap;
+        justify-content: center;
 	}
 	nav a {
 		padding: 1em 0.8em;
@@ -44,3 +48,4 @@ import HeaderLink from './HeaderLink.astro';
 		color: var(--accent);
 	}
 </style>
+<style>@media(max-width:600px){.internal-links{gap:0;}nav a{padding:1em .45em;font-size:.8em;}}</style>

@@ -1,91 +1,99 @@
 ---
+import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/article.css';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
-const { title, description, pubDate, updatedDate, heroImage, category = 'Câu chuyện', heroAlt = '', caption } = Astro.props;
-const hero = typeof heroImage === 'string' ? heroImage : heroImage?.src;
-const pageURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
-const dateLabel = new Intl.DateTimeFormat('vi-VN', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'Asia/Ho_Chi_Minh' }).format(pubDate);
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const pageURL = new URL(Astro.url.pathname, Astro.site).href;
 const articleSchema = {
-  '@context': 'https://schema.org', '@type': 'BlogPosting',
-  headline: title, description, url: pageURL,
-  mainEntityOfPage: pageURL, inLanguage: 'vi-VN',
-  datePublished: pubDate.toISOString(),
-  dateModified: (updatedDate || pubDate).toISOString(),
-  ...(hero ? { image: new URL(hero, Astro.site ?? Astro.url).href } : {}),
-  publisher: { '@type': 'Organization', name: 'Truth News', url: 'https://truth.com.vn/' },
+    '@context': 'https://schema.org', '@type': 'BlogPosting',
+    headline: title, description, url: pageURL,
+    mainEntityOfPage: pageURL, inLanguage: 'vi-VN',
+    datePublished: pubDate.toISOString(),
+    dateModified: (updatedDate || pubDate).toISOString(),
+    ...(heroImage ? {image: new URL(heroImage.src, Astro.site).href} : {}),
+    publisher: {'@type': 'Organization', name: 'Truth News', url: 'https://truth.com.vn/'},
 };
 ---
-<!doctype html>
+
 <html lang="vi">
-  <head>
-    <BaseHead title={title} description={description} image={heroImage} type="article" />
-    <meta property="article:published_time" content={pubDate.toISOString()} />
-    {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
-    <script type="application/ld+json" set:html={JSON.stringify(articleSchema).replace(/</g, '\\u003c')} />
-  </head>
-  <body class="editorial-page">
-    <a class="editorial-skip" href="#article-body">Đến nội dung</a>
-    <Header />
-    <main class="editorial-main">
-      <article>
-        <header class="editorial-heading">
-          <p class="editorial-category">{category}</p>
-          <time datetime={pubDate.toISOString()}>{dateLabel}</time>
-          <h1>{title}</h1>
-          <p class="editorial-deck">{description}</p>
-          <div class="editorial-actions" aria-label="Chia sẻ bài viết">
-            <button type="button" data-editorial-share hidden>Chia sẻ ↗</button>
-            <button type="button" data-editorial-copy hidden>Sao chép liên kết</button>
-            <a href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(pageURL)}`} data-editorial-email>Gửi email</a>
-          </div>
-          <p class="editorial-status" role="status" aria-live="polite"></p>
-        </header>
-        {hero && <figure class="editorial-hero hero-image">
-          <img src={hero} alt={heroAlt || title} width="1600" height="1000" fetchpriority="high" />
-          {caption && <figcaption>{caption}</figcaption>}
-        </figure>}
-        <div id="article-body" class="editorial-body prose" tabindex="-1"><slot /></div>
-      </article>
-    </main>
-    <Footer />
-    <script>
-      function initEditorialActions() {
-        const copy = document.querySelector<HTMLButtonElement>('[data-editorial-copy]');
-        const share = document.querySelector<HTMLButtonElement>('[data-editorial-share]');
-        const email = document.querySelector<HTMLAnchorElement>('[data-editorial-email]');
-        const status = document.querySelector<HTMLElement>('.editorial-status');
-        const url = () => { const value = new URL(window.location.href); value.hash = ''; return value.href; };
-        if (email) email.href = `mailto:?subject=${encodeURIComponent(document.title)}&body=${encodeURIComponent(url())}`;
-        if (copy) {
-          copy.hidden = false;
-          copy.onclick = async () => {
-            try {
-              await navigator.clipboard.writeText(url());
-              if (status) status.textContent = 'Đã sao chép liên kết.';
-            } catch {
-              window.prompt('Sao chép liên kết bài viết:', url());
-              if (status) status.textContent = 'Bạn có thể sao chép liên kết trong hộp thoại.';
-            }
-          };
-        }
-        if (share && typeof navigator.share === 'function') {
-          share.hidden = false;
-          share.onclick = async () => {
-            try { await navigator.share({ title: document.title, url: url() }); }
-            catch (error) {
-              if (error instanceof Error && error.name === 'AbortError') return;
-              if (status) status.textContent = 'Hãy dùng Sao chép liên kết hoặc Gửi email.';
-            }
-          };
-        }
-      }
-      initEditorialActions();
-      document.addEventListener('astro:page-load', initEditorialActions);
-    </script>
-  </body>
+	<head>
+		<BaseHead title={title} description={description} image={heroImage} type="article" />
+        <meta property="article:published_time" content={pubDate.toISOString()} />
+        {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
+        <script type="application/ld+json" set:html={JSON.stringify(articleSchema).replace(/</g, '\\u003c')} />
+		<style>
+			main {
+				width: calc(100% - 2em);
+				max-width: 100%;
+				margin: 0;
+			}
+			.hero-image {
+				width: 100%;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+			}
+			.prose {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 1em;
+				color: rgb(var(--gray-dark));
+			}
+			.title {
+				margin-bottom: 1em;
+				padding: 1em 0;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+			.date {
+				margin-bottom: 0.5em;
+				color: rgb(var(--gray));
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article id="truth-blog-article">
+				<div class="hero-image">
+					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+				</div>
+				<div class="prose">
+					<div class="title">
+						<div class="date">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
+						</div>
+						<h1>{title}</h1>
+						<hr />
+					</div>
+					<div id="truth-blog-body"><slot /></div>
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
 </html>

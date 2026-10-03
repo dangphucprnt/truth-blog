@@ -8,6 +8,11 @@ backend:
 media_folder: "public/blog-assets"
 public_folder: "/blog-assets"
 
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
 collections:
   - name: "blog"
     label: "Bài Viết"
@@ -15,11 +20,18 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
+      - label: "Chủ đề"
+        name: "category"
+        widget: "select"
+        default: "auto"
+        required: false
+        options:
+          - { label: "Tự nhận diện", value: "auto" }
+          - { label: "iPhone - Công nghệ", value: "iphone-cong-nghe" }
+          - { label: "3D Tech", value: "3d-tech" }
+          - { label: "Xã Hội", value: "xa-hoi" }
       - { label: "Tiêu đề", name: "title", widget: "string" }
       - { label: "Mô tả ngắn", name: "description", widget: "string" }
       - { label: "Ngày xuất bản", name: "pubDate", widget: "datetime" }
       - { label: "Ảnh đại diện", name: "heroImage", widget: "image", required: false }
-      - { label: "Chuyên mục", name: "category", widget: "string", required: false, default: "Câu chuyện" }
-      - { label: "Mô tả ảnh đại diện", name: "heroAlt", widget: "string", required: false, hint: "Mô tả ngắn nội dung ảnh để hỗ trợ người đọc." }
-      - { label: "Chú thích dưới ảnh", name: "caption", widget: "string", required: false }
       - { label: "Nội dung bài viết", name: "body", widget: "markdown" }

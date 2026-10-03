@@ -5,13 +5,32 @@ function safeUrl(value) {
     if (url.protocol !== 'https:' || !hosts.has(url.hostname) || url.username || url.password || (url.port && url.port !== '443')) throw new Error('Unsupported source');
     return url;
 }
+export function extractContentHtml(html, hostname) {
+    const target = hostname === 'vnexpress.net' ? 'fck_detail' : /trithucvn/.test(hostname) ? 'entry' : /tuoitre/.test(hostname) ? 'detail-content' : /tinhte/.test(hostname) ? 'content' : null;
+    const openings = /<([a-z][a-z0-9]*)\b([^>]*)>/gi;
+    let match;
+    while ((match = openings.exec(html))) {
+        const classes = (match[2].match(/\bclass\s*=\s*["']([^"']*)["']/i)?.[1] || '').split(/\s+/);
+        if (target ? !classes.includes(target) || (/tinhte/.test(hostname) && match[1].toLowerCase() !== 'article') : match[1].toLowerCase() !== 'article') continue;
+        const tag = match[1];
+        const tokens = new RegExp('<(/?)' + tag + '\\b[^>]*>', 'gi');
+        tokens.lastIndex = openings.lastIndex;
+        let depth = 1, token;
+        while ((token = tokens.exec(html))) {
+            depth += token[1] ? -1 : 1;
+            if (!depth) return html.slice(match.index, tokens.lastIndex);
+        }
+    }
+    return '';
+}
+
 export async function onRequest({request, env}) {
     const headers = {'Content-Type':'application/json; charset=utf-8', 'Access-Control-Allow-Origin':'*', 'Cache-Control':'no-store'};
     const reply = (data, status = 200) => Response.json(data, {status, headers});
     if (request.method !== 'GET') return reply({error:'Method not allowed'},405);
     try {
         let url = safeUrl(new URL(request.url).searchParams.get('url'));
-        const cacheKey = new Request('https://blog.truth.com.vn/api/news?url=' + encodeURIComponent(url.href));
+        const cacheKey = new Request('https://blog.truth.com.vn/api/news?version=3&url=' + encodeURIComponent(url.href));
         const cache = caches.default;
         const hit = await cache.match(cacheKey);
         if (hit) return reply(await hit.json());
@@ -35,7 +54,8 @@ export async function onRequest({request, env}) {
         const bytes = new Uint8Array(size); let offset = 0;
         for (const chunk of chunks) { bytes.set(chunk,offset); offset += chunk.length; }
         const html = new TextDecoder().decode(bytes);
-        const root = url.hostname === 'vnexpress.net' ? '.fck_detail' : /trithucvn/.test(url.hostname) ? '.entry-content' : /tuoitre/.test(url.hostname) ? '.detail-content' : 'article';
+        const contentHtml = extractContentHtml(html, url.hostname);
+        const root = url.hostname === 'vnexpress.net' ? '.fck_detail' : /trithucvn/.test(url.hostname) ? '.content-single .entry' : /tuoitre/.test(url.hostname) ? '.detail-content' : /tinhte/.test(url.hostname) ? 'article.content' : 'article';
         const blocks = [];
         const rewriter = new HTMLRewriter();
         for (const tag of ['p','h2','h3','figcaption','blockquote']) {
@@ -45,7 +65,7 @@ export async function onRequest({request, env}) {
             });
         }
         rewriter.on(`${root} img`, {element(el) {
-            const src = el.getAttribute('data-src') || el.getAttribute('data-original') || el.getAttribute('src');
+            const src = el.getAttribute('data-src') || el.getAttribute('data-original') || el.getAttribute('data-url') || el.getAttribute('src');
             if (src) try {
                 const image = new URL(src,url.href);
                 if (image.protocol === 'https:') blocks.push({type:'image',url:image.href,text:el.getAttribute('alt') || ''});
@@ -53,7 +73,7 @@ export async function onRequest({request, env}) {
         }});
         await rewriter.transform(new Response(html)).text();
         const clean = blocks.map(b => ({...b,text:b.text.replace(/\s+/g,' ').trim()})).filter(b => b.type === 'image' || (b.text && !/^The post .*first appeared/i.test(b.text)));
-        const text = clean.filter(b => b.type !== 'image').map(b => b.text).join('\n\n');
+        const text = contentHtml ? contentHtml.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim() : clean.filter(b => b.type !== 'image').map(b => b.text).join('\n\n');
         if (text.length < 300) return reply({error:'Article body unavailable'},422);
         let summary = '', summaryKind = 'extract';
         if (env.AI) try {
@@ -66,7 +86,7 @@ export async function onRequest({request, env}) {
             ]);
             if (typeof result.response === 'string' && result.response.trim()) {summary = result.response.trim(); summaryKind = 'ai';}
         } catch {}
-        const data = {blocks:clean, summary, summaryKind, sourceUrl:url.href};
+        const data = {blocks:clean, contentHtml, summary, summaryKind, sourceUrl:url.href};
         // Cache successful AI results; unavailable AI can recover on the next request.
         if (summaryKind === 'ai') await cache.put(cacheKey,Response.json(data,{headers:{'Cache-Control':'public, max-age=3600'}}));
         return reply(data);

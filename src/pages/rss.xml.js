@@ -1,4 +1,5 @@
 import rss from '@astrojs/rss';
+import {postPath,postTopic} from '../utils/blog.mjs';
 import { getCollection } from 'astro:content';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
@@ -16,7 +17,8 @@ export async function GET(context) {
 			title: post.data.title || 'Không có tiêu đề',
 			pubDate: post.data.pubDate,
 			description: post.data.description || 'Chưa có mô tả cho bài viết này',
-			link: `/blog/${post.slug || post.id}/`,
+			link: postPath(post,posts),
+            categories: [postTopic(post)],
 		})),
 	});
 }
