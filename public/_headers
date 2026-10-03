@@ -1,9 +1,5 @@
-/rss.xml
-  Access-Control-Allow-Origin: *
-  Cache-Control: no-cache, max-age=0, must-revalidate
-
-/blog/*
-  Access-Control-Allow-Origin: *
-
 /*
   Access-Control-Allow-Origin: *
+
+/rss.xml
+  Cache-Control: no-cache, max-age=0, must-revalidate

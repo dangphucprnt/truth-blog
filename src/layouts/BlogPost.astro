@@ -52,7 +52,7 @@ const articleSchema = {
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
-				text-align: center;
+				text-align: left;
 				line-height: 1;
 			}
 			.title h1 {
@@ -65,7 +65,24 @@ const articleSchema = {
 			.last-updated-on {
 				font-style: italic;
 			}
-		</style>
+		
+            #truth-blog-body { text-align: left; }
+            #truth-blog-body :global(p), #truth-blog-body :global(h1),
+            #truth-blog-body :global(h2), #truth-blog-body :global(h3),
+            #truth-blog-body :global(h4), #truth-blog-body :global(h5),
+            #truth-blog-body :global(h6), #truth-blog-body :global(ul),
+            #truth-blog-body :global(ol), #truth-blog-body :global(blockquote) {
+                text-align: left;
+            }
+            #truth-blog-body :global(img) { display: block; max-width: 100%; height: auto; margin-inline: auto; }
+            #truth-blog-body :global(figure) { margin-inline: 0; text-align: center; }
+            #truth-blog-body :global(figcaption),
+            #truth-blog-body :global(figcaption p),
+            #truth-blog-body :global(.caption),
+            #truth-blog-body :global(.image-caption) {
+                text-align: center; font-size: 0.82em; line-height: 1.5; font-style: italic;
+            }
+        </style>
 	</head>
 
 	<body>
