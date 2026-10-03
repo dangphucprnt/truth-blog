@@ -23,7 +23,7 @@ const articleSchema = {
 
 <html lang="vi">
 	<head>
-		<BaseHead title={title} description={description} image={heroImage} type="article" />
+		<BaseHead title={title} description={description} image={heroImage} type="article" ads={true} />
         <meta property="article:published_time" content={pubDate.toISOString()} />
         {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
         <script type="application/ld+json" set:html={JSON.stringify(articleSchema).replace(/</g, '\\u003c')} />

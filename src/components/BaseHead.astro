@@ -11,11 +11,12 @@ interface Props {
 	description: string;
 	image?: ImageMetadata;
 	type?: 'website' | 'article';
+	ads?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = FallbackImage, type = 'website' } = Astro.props;
+const { title, description, image = FallbackImage, type = 'website', ads = false } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -75,3 +76,7 @@ const { title, description, image = FallbackImage, type = 'website' } = Astro.pr
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={new URL(image.src, canonicalURL)} />
+
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="google-adsense-account" content="ca-pub-8553441889871692" />
+{ads && <script is:inline async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8553441889871692" crossorigin="anonymous"></script>}
