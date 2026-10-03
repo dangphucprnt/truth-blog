@@ -10,25 +10,25 @@ Chiếc iPhone đầu tiên ra mắt năm 2007, đã mang đến một kỷ nguy
 
 Chúng ta của hiện tại, 19 năm 4 tháng tính từ thời điểm đó. Hãy cùng nhìn lại, tại khoảnh khắc đó, Apple hay Steve Jobs đã trang bị những công nghệ gì cho chiếc iPhone làm thay đổi cách cả thế giới sử dụng điện thoại di động.
 
-1. #### Màn hình cảm ứng điện dung đa điểm (Multi-touch Capacitive Screen)
+1. ##### Màn hình cảm ứng điện dung đa điểm (Multi-touch Capacitive Screen)
 
    Hầu hết smartphone lúc đó (Nokia N95, BlackBerry Curve 8300, Palm Treo) trung thành với bàn phím vật lý (QWERTY hoặc T9) hoặc bàn phím trượt.<br>
    Các thiết bị có màn hình cảm ứng lúc bấy giờ (như chạy Windows Mobile hay Palm OS) chủ yếu dùng cảm ứng điện trở (Resistive Touch). Loại màn hình này phản hồi dựa trên lực nhấn (hay gọi vui là cảm ứng bằng răng, hay cảm ứng móng tay), cần dùng bút stylus, thao tác đơ cứng và không hỗ trợ cảm ứng đa điểm cùng lúc.
-2. #### iPhone 2G là một trong những điện thoại thương mại đầu tiên kết hợp bộ 3 cảm biến tự động hóa trải nghiệm
+2. ##### iPhone 2G là một trong những điện thoại thương mại đầu tiên kết hợp bộ 3 cảm biến tự động hóa trải nghiệm
 
    Các smartphone như Nokia N-series đã có cảm biến xoay màn hình hoặc cảm biến ánh sáng ở một số dòng cao cấp, nhưng việc tích hợp đồng bộ cả 3 cảm biến để phục vụ mượt mà cho giao diện cảm ứng ngón tay thì iPhone là tiên phong.
-3. #### Hệ điều hành iPhone OS (tiền thân của iOS) & Trình duyệt Safari đầy đủ
+3. ##### Hệ điều hành iPhone OS (tiền thân của iOS) & Trình duyệt Safari đầy đủ
 
    Trình duyệt di động thời đó chủ yếu tải các trang web tối giản chuẩn WAP/XHTML, giao diện vỡ nét và trải nghiệm duyệt web rất hạn chế.
-4. #### Bàn phím ảo thông minh (Virtual Software Keyboard)
+4. ##### Bàn phím ảo thông minh (Virtual Software Keyboard)
 
    Các hãng lớn như BlackBerry hay Nokia tin rằng bàn phím vật lý là "tiêu chuẩn vàng" cho doanh nhân. Cựu CEO Microsoft (Steve Ballmer) từng chế nhạo iPhone vì "không có bàn phím nên không thể làm thiết bị công việc tốt".<br>
    Bàn phím ảo trên các máy cảm ứng điện trở trước đó rất nhỏ, khó bấm và bắt buộc dùng bút.
-5. #### Thiết kế phần cứng cao cấp & Trải nghiệm đa phương tiện
+5. ##### Thiết kế phần cứng cao cấp & Trải nghiệm đa phương tiện
 
    Mặt lưng nhôm kết hợp nhựa, mặt kính cường lực chống xước che phủ toàn bộ màn hình (thay vì mặt nhựa acrylic dễ xước thời đó). Tích hợp trải nghiệm máy nghe nhạc iPod cao cấp.<br>
    Đa số điện thoại thời 2007 có vỏ hoàn toàn bằng nhựa cứng hoặc nhựa nhám. Dù Nokia N95 hay Sony Ericsson Walkman series rất mạnh về giải trí, giao diện quản lý nhạc và cảm giác cầm nắm cao cấp của iPhone vẫn tạo ra sự khác biệt rõ rệt.
-6. #### Free Push IMAP email
+6. ##### Free Push IMAP email
 
       Năm 2007, khái niệm "Push Email" (Email đẩy ngay lập tức) là một đặc quyền cao cấp và vô cùng đắt đỏ, còn giao thức IMAP hoàn toàn vượt trội so với POP3 truyền thống.<br>
       Tại thời điểm ra mắt, Apple đã hợp tác độc quyền với Yahoo! để cung cấp dịch vụ Free Push IMAP Email cho toàn bộ người dùng iPhone. <br>
