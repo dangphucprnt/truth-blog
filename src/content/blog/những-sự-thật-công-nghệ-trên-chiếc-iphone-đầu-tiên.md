@@ -3,11 +3,10 @@ title: Những Sự Thật Công Nghệ Trên Chiếc iPhone Đầu Tiên
 description: Chiếc iPhone đầu tiên ra mắt vào tháng 6/2007
 pubDate: 2026-10-02T09:17:00.000+07:00
 heroImage: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR4YCCr5vdrfw742AhQTFTPrGvADq4ueXqWUeHyLmysk1ab5WcfO_PawOL&s=10
-category: iPhone, Công nghệ
+category: iPhone - Công nghệ
 heroAlt: ""
 ---
-Chiếc iPhone đầu tiên ra mắt năm 2007, đã mang đến một kỷ nguyên mới cho những thiết bị smartphone từ đó đến mãi về sau.
-
+Chiếc iPhone đầu tiên ra mắt năm 2007, đã mang đến một kỷ nguyên mới cho những thiết bị smartphone từ đó đến mãi về sau.<br>
 Chúng ta của hiện tại, 19 năm 4 tháng tính từ thời điểm đó. Hãy cùng nhìn lại, tại khoảnh khắc đó, Apple hay Steve Jobs đã trang bị những công nghệ gì cho chiếc iPhone làm thay đổi cách cả thế giới sử dụng điện thoại di động.
 
 ##### Màn hình cảm ứng điện dung đa điểm (Multi-touch Capacitive Screen)
