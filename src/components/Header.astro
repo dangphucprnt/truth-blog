@@ -1,52 +1,63 @@
 ---
 import HeaderLink from './HeaderLink.astro';
+const topics = [
+    ['/', 'Trang chủ'],
+    ['/iphone-cong-nghe/', 'iPhone - Công nghệ'],
+    ['/ca-phe/', 'Cà Phê'],
+    ['/3d-tech/', '3D Tech'],
+    ['/xa-hoi/', 'Xã Hội'],
+];
 ---
-
 <header>
-	<nav>
-		<div class="internal-links">
-			<HeaderLink href="/">Trang chủ</HeaderLink>
-            <HeaderLink href="/iphone-cong-nghe/">iPhone - Công nghệ</HeaderLink>
-            <HeaderLink href="/ca-phe/">Cà Phê</HeaderLink>
-            <HeaderLink href="/3d-tech/">3D Tech</HeaderLink>
-            <HeaderLink href="/xa-hoi/">Xã Hội</HeaderLink>
-		</div>
-	</nav>
+    <nav class="desktop-nav" aria-label="Chuyên mục blog">
+        {topics.map(([href,label]) => <HeaderLink href={href}>{label}</HeaderLink>)}
+    </nav>
+    <details class="mobile-menu" id="blog-mobile-menu">
+        <summary aria-label="Mở hoặc đóng các chuyên mục blog">
+            <span class="brand">Truth Blog</span>
+            <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
+        </summary>
+        <nav aria-label="Chuyên mục blog trên điện thoại">
+            {topics.map(([href,label]) => <HeaderLink href={href}>{label}</HeaderLink>)}
+        </nav>
+    </details>
 </header>
+<script>
+    const menu = document.getElementById('blog-mobile-menu') as HTMLDetailsElement | null;
+    document.addEventListener('click', event => {
+        if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && menu?.open) {
+            menu.open = false;
+            menu.querySelector('summary')?.focus();
+        }
+    });
+    menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {menu.open = false;}));
+</script>
 <style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.internal-links {
-		display: flex;
-		align-items: center;
-		gap: 0.5em;
-        flex-wrap: wrap;
-        justify-content: center;
-	}
-	nav a {
-		padding: 1em 0.8em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.main-site-link {
-		font-weight: 500;
-	}
-	.main-site-link:hover {
-		color: var(--accent);
-	}
+    header { margin:0; padding:0 20px; background:#fff; border-bottom:1px solid #e5e5e7; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif; }
+    .desktop-nav { display:flex; justify-content:center; align-items:center; gap:24px; min-height:52px; }
+    nav a { color:#1d1d1f; text-decoration:none; font-size:14px; line-height:20px; padding:16px 0 13px; border-bottom:3px solid transparent; }
+    nav a.active { border-bottom-color:#0071e3; font-weight:600; }
+    nav a:hover { color:#0071e3; }
+    nav a:focus-visible, summary:focus-visible { outline:2px solid #0071e3; outline-offset:3px; }
+    .mobile-menu { display:none; }
+    @media(max-width:640px) {
+        header { padding:0 18px; }
+        .desktop-nav { display:none; }
+        .mobile-menu { display:block; }
+        summary { display:flex; align-items:center; justify-content:space-between; min-height:48px; cursor:pointer; list-style:none; color:#1d1d1f; }
+        summary::-webkit-details-marker { display:none; }
+        .brand { font-size:16px; font-weight:600; letter-spacing:-.02em; }
+        .menu-icon { width:44px; height:44px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; margin-right:-12px; }
+        .menu-icon i { display:block; width:20px; height:1.5px; background:currentColor; transition:transform .18s ease; }
+        details[open] .menu-icon i:first-child { transform:translateY(3.75px) rotate(45deg); }
+        details[open] .menu-icon i:last-child { transform:translateY(-3.75px) rotate(-45deg); }
+        .mobile-menu nav { display:flex; flex-direction:column; padding:4px 0 12px; }
+        .mobile-menu nav a { padding:12px 0; border-bottom:1px solid #e5e5e7; font-size:15px; line-height:22px; }
+        .mobile-menu nav a:last-child { border-bottom:0; }
+        .mobile-menu nav a.active { color:#0071e3; }
+    }
+    @media(prefers-reduced-motion:reduce) { .menu-icon i { transition:none; } }
 </style>
-<style>@media(max-width:600px){.internal-links{gap:0;}nav a{padding:1em .45em;font-size:.8em;}}</style>

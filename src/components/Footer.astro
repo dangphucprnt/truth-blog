@@ -3,8 +3,10 @@ const today = new Date();
 ---
 
 <footer>
-    &copy; {today.getFullYear()} Truth News. All rights reserved.
-    <nav aria-label="Thông tin website" class="policy-links" style="display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin:12px 0;font-size:13px;">
+    <div class="footer-inner">
+    <p class="retail-note">Xem thêm cách để mua hàng: <a href="https://locate.apple.com/vn/vi/sales">Tìm cửa hàng bán lẻ</a> gần bạn.</p>
+    <div class="footer-meta"><p class="copyright">Bản quyền &copy; {today.getFullYear()} Truth News. Bảo lưu mọi quyền.</p><span class="region">Việt Nam</span></div>
+    <nav aria-label="Thông tin website" class="policy-links">
         <a href="https://truth.com.vn/about.html">Giới thiệu</a>
         <a href="https://truth.com.vn/privacy.html">Chính sách riêng tư</a>
         <a href="https://truth.com.vn/terms.html">Điều khoản</a>
@@ -24,6 +26,7 @@ const today = new Date();
         </a>
     </div>
     <p id="contact-copy-status" class="copy-status" role="status" aria-live="polite"></p>
+    </div>
 </footer>
 <script>
     const emailButton = document.getElementById('copy-contact-email');
@@ -38,10 +41,24 @@ const today = new Date();
     });
 </script>
 <style>
-    footer { padding: 2em 1em 6em; background: linear-gradient(var(--gray-gradient)) no-repeat; color: rgb(var(--gray)); text-align: center; }
-    .social-links { display: flex; justify-content: center; align-items: center; gap: 1em; margin-top: 1em; }
-    .social-links a, .social-links button { display: inline-flex; justify-content: center; align-items: center; width: 40px; height: 40px; text-decoration: none; color: rgb(var(--gray)); background: transparent; border: 0; padding: 0; cursor: pointer; border-radius: 6px; }
-    .social-links a:hover, .social-links button:hover { color: rgb(var(--gray-dark)); }
+    footer { padding:20px 24px 24px; background:#f5f5f7; color:#6e6e73; text-align:left; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif; font-size:12px; line-height:1.5; }
+    .footer-inner { max-width:980px; margin:0 auto; }
+    .retail-note { margin:0 0 14px; padding:0 0 14px; border-bottom:1px solid #d2d2d7; font-size:12px; line-height:1.5; }
+    .retail-note a { color:#6e6e73; text-decoration:underline; text-underline-offset:2px; }
+    .footer-meta { display:flex; align-items:baseline; justify-content:space-between; gap:16px; }
+    .copyright { margin:0 0 5px; font-size:12px; line-height:1.5; }
+    .region { white-space:nowrap; }
+    .policy-links { display:flex; flex-wrap:wrap; align-items:center; column-gap:0; row-gap:6px; margin:0; }
+    .policy-links a { color:#6e6e73; text-decoration:none; font-size:12px; line-height:16px; padding:0 10px; border-right:1px solid #aaa; }
+    .policy-links a:first-child { padding-left:0; }
+    .policy-links a:last-child { border-right:0; }
+    .policy-links a:hover { text-decoration:underline; }
+    .social-links { display:flex; justify-content:flex-start; align-items:center; gap:6px; margin-top:10px; }
+    .social-links svg { width:18px; height:18px; }
+    .social-links a, .social-links button { display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; text-decoration: none; color:#6e6e73; background: transparent; border: 0; padding: 0; cursor: pointer; border-radius: 6px; }
+    .social-links a:hover, .social-links button:hover { color:#424245; }
     .social-links a:focus-visible, .social-links button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-    .copy-status { min-height: 1.5em; margin: .5em 0 0; font-size: .9em; }
+    .copy-status { margin:4px 0 0; font-size:12px; }
+    .copy-status:empty { display:none; }
+    @media(max-width:640px) { footer { padding:18px; } .footer-meta { flex-wrap:wrap; gap:0; } .region { display:none; } }
 </style>
