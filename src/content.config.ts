@@ -7,6 +7,7 @@ const normalizeCategory = (value: unknown) => {
         .normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd')
         .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     if (['iphone-cong-nghe', 'iphone', 'cong-nghe'].includes(key)) return 'iphone-cong-nghe';
+    if (['ca-phe', 'cafe', 'coffee'].includes(key)) return 'ca-phe';
     if (['3d-tech', '3d', 'cong-nghe-3d'].includes(key)) return '3d-tech';
     if (['xa-hoi', 'social', 'society'].includes(key)) return 'xa-hoi';
     return 'auto';
@@ -19,7 +20,7 @@ const blog = defineCollection({
 	schema: ({ image }) =>
 		z.object({
 			title: z.string(),
-            category: z.preprocess(normalizeCategory, z.enum(['auto','iphone-cong-nghe','3d-tech','xa-hoi'])),
+            category: z.preprocess(normalizeCategory, z.enum(['auto','iphone-cong-nghe','ca-phe','3d-tech','xa-hoi'])),
 			description: z.string(),
 			// Transform string to Date object
 			pubDate: z.coerce.date(),

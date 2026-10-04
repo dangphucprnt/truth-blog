@@ -1,5 +1,6 @@
 export const TOPICS = [
  {id:'iphone-cong-nghe',label:'iPhone - Công nghệ'},
+ {id:'ca-phe',label:'Cà Phê'},
  {id:'3d-tech',label:'3D Tech'},
  {id:'xa-hoi',label:'Xã Hội'}
 ];
@@ -19,7 +20,9 @@ export function postTopic(post) {
  const title=asciiSlug(post.data.title+' '+(post.data.description||'')).replace(/-/g,' ');
  const body=asciiSlug(post.body||'').replace(/-/g,' ');
  const score=words=>words.reduce((n,w)=>n+(title.includes(w)?5:0)+(body.includes(w)?1:0),0);
+ const coffee=score(['ca phe','coffee','espresso','cappuccino','latte','arabica','robusta','barista','rang xay']);
  const three=score(['blender','3d','render','cad','modeling','in 3d','maya','unreal','houdini']);
  const tech=score(['iphone','apple','ios','cong nghe','dien thoai','smartphone','chip','android','phan mem','tri tue nhan tao']);
+ if (coffee>0 && coffee>=three && coffee>=tech) return 'ca-phe';
  return three>tech ? '3d-tech' : tech>0 ? 'iphone-cong-nghe' : 'xa-hoi';
 }

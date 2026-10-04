@@ -28,6 +28,7 @@ collections:
         options:
           - { label: "Tự nhận diện", value: "auto" }
           - { label: "iPhone - Công nghệ", value: "iphone-cong-nghe" }
+          - { label: "Cà Phê", value: "ca-phe" }
           - { label: "3D Tech", value: "3d-tech" }
           - { label: "Xã Hội", value: "xa-hoi" }
       - { label: "Tiêu đề", name: "title", widget: "string" }

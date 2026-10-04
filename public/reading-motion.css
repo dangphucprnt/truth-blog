@@ -1,0 +1,20 @@
+/* Native scrolling keeps Safari momentum and browser gestures responsive. */
+html { scroll-behavior: smooth; }
+#reader-content-body {
+    scroll-behavior: smooth;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+}
+#truth-blog-body :is(h2,h3,h4), .article-content :is(h2,h3,h4) { scroll-margin-top: 76px; }
+body:has(#truth-blog-article) > header,
+body:has(.posts) > header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: saturate(160%) blur(16px);
+    -webkit-backdrop-filter: saturate(160%) blur(16px);
+}
+@media (prefers-reduced-motion: reduce) {
+    html, #reader-content-body { scroll-behavior: auto; }
+}
