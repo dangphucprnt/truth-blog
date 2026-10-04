@@ -7,57 +7,80 @@ const topics = [
     ['/3d-tech/', '3D Tech'],
     ['/xa-hoi/', 'Xã Hội'],
 ];
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 ---
 <header>
     <nav class="desktop-nav" aria-label="Chuyên mục blog">
-        {topics.map(([href,label]) => <HeaderLink href={href}>{label}</HeaderLink>)}
+        {topics.map(([href,label]) => <HeaderLink href={href} class={currentPath === (href.replace(/\/+$/, '') || '/') ? 'active' : undefined}>{label}</HeaderLink>)}
     </nav>
-    <details class="mobile-menu" id="blog-mobile-menu">
-        <summary aria-label="Mở hoặc đóng các chuyên mục blog">
-            <span class="brand">Truth Blog</span>
-            <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
-        </summary>
-        <nav aria-label="Chuyên mục blog trên điện thoại">
-            {topics.map(([href,label]) => <HeaderLink href={href}>{label}</HeaderLink>)}
-        </nav>
-    </details>
+    <div class="mobile-menu" id="blog-mobile-menu">
+        <div class="mobile-bar">
+            <a class="brand" href="/">Truth Blog</a>
+            <button type="button" class="menu-toggle" id="blog-menu-toggle" aria-label="Mở các chuyên mục blog" aria-expanded="false" aria-controls="blog-menu-panel">
+                <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
+            </button>
+        </div>
+        <div class="menu-panel" id="blog-menu-panel" inert>
+            <div class="menu-panel-inner">
+                <nav aria-label="Chuyên mục blog trên điện thoại">
+                    {topics.map(([href,label]) => <HeaderLink href={href} class={currentPath === (href.replace(/\/+$/, '') || '/') ? 'active' : undefined}>{label}</HeaderLink>)}
+                </nav>
+            </div>
+        </div>
+    </div>
 </header>
 <script>
-    const menu = document.getElementById('blog-mobile-menu') as HTMLDetailsElement | null;
+    const menu = document.getElementById('blog-mobile-menu');
+    const toggle = document.getElementById('blog-menu-toggle');
+    const panel = document.getElementById('blog-menu-panel');
+    function setMenu(open: boolean) {
+        menu?.classList.toggle('is-open', open);
+        toggle?.setAttribute('aria-expanded', String(open));
+        toggle?.setAttribute('aria-label', open ? 'Đóng các chuyên mục blog' : 'Mở các chuyên mục blog');
+        if (panel) panel.inert = !open;
+    }
+    toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
     document.addEventListener('click', event => {
-        if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+        if (event.target instanceof Node && !menu?.contains(event.target)) setMenu(false);
     });
     document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && menu?.open) {
-            menu.open = false;
-            menu.querySelector('summary')?.focus();
+        if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+            setMenu(false);
+            toggle.focus();
         }
     });
-    menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {menu.open = false;}));
+    menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+    window.matchMedia('(min-width:641px)').addEventListener('change', () => setMenu(false));
 </script>
 <style>
     header { margin:0; padding:0 20px; background:#fff; border-bottom:1px solid #e5e5e7; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif; }
     .desktop-nav { display:flex; justify-content:center; align-items:center; gap:24px; min-height:52px; }
     nav a { color:#1d1d1f; text-decoration:none; font-size:14px; line-height:20px; padding:16px 0 13px; border-bottom:3px solid transparent; }
     nav a.active { border-bottom-color:#0071e3; font-weight:600; }
-    nav a:hover { color:#0071e3; }
-    nav a:focus-visible, summary:focus-visible { outline:2px solid #0071e3; outline-offset:3px; }
+    a, button { -webkit-tap-highlight-color:transparent; }
+    nav a:focus-visible, .brand:focus-visible, .menu-toggle:focus-visible { outline:2px solid #0071e3; outline-offset:3px; }
     .mobile-menu { display:none; }
+    @media(hover:hover) { nav a:hover { color:#0071e3; } }
     @media(max-width:640px) {
         header { padding:0 18px; }
         .desktop-nav { display:none; }
         .mobile-menu { display:block; }
-        summary { display:flex; align-items:center; justify-content:space-between; min-height:48px; cursor:pointer; list-style:none; color:#1d1d1f; }
-        summary::-webkit-details-marker { display:none; }
-        .brand { font-size:16px; font-weight:600; letter-spacing:-.02em; }
-        .menu-icon { width:44px; height:44px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; margin-right:-12px; }
-        .menu-icon i { display:block; width:20px; height:1.5px; background:currentColor; transition:transform .18s ease; }
-        details[open] .menu-icon i:first-child { transform:translateY(3.75px) rotate(45deg); }
-        details[open] .menu-icon i:last-child { transform:translateY(-3.75px) rotate(-45deg); }
-        .mobile-menu nav { display:flex; flex-direction:column; padding:4px 0 12px; }
+        .mobile-bar { display:flex; align-items:center; justify-content:space-between; height:48px; }
+        .brand { display:flex; align-items:center; min-height:44px; color:#1d1d1f; font-size:16px; font-weight:600; letter-spacing:-.02em; text-decoration:none; background:transparent; }
+        .menu-toggle { appearance:none; -webkit-appearance:none; width:44px; height:44px; margin:0 -12px 0 0; padding:0; border:0; border-radius:0; background:transparent; color:#1d1d1f; box-shadow:none; cursor:pointer; touch-action:manipulation; }
+        .menu-toggle:hover, .menu-toggle:active { background:transparent; color:#1d1d1f; box-shadow:none; }
+        .menu-icon { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; }
+        .menu-icon i { display:block; width:20px; height:1.5px; background:currentColor; transition:transform .24s ease; }
+        .is-open .menu-icon i:first-child { transform:translateY(3.75px) rotate(45deg); }
+        .is-open .menu-icon i:last-child { transform:translateY(-3.75px) rotate(-45deg); }
+        .menu-panel { display:grid; grid-template-rows:0fr; visibility:hidden; transition:grid-template-rows .26s cubic-bezier(.22,.61,.36,1),visibility 0s .26s; }
+        .is-open .menu-panel { grid-template-rows:1fr; visibility:visible; transition:grid-template-rows .26s cubic-bezier(.22,.61,.36,1),visibility 0s; }
+        .menu-panel-inner { min-height:0; overflow:hidden; }
+        .mobile-menu nav { display:flex; flex-direction:column; padding:4px 0 12px; opacity:0; transform:translateY(-6px); transition:opacity .2s ease,transform .26s ease; }
+        .is-open nav { opacity:1; transform:translateY(0); }
         .mobile-menu nav a { padding:12px 0; border-bottom:1px solid #e5e5e7; font-size:15px; line-height:22px; }
         .mobile-menu nav a:last-child { border-bottom:0; }
         .mobile-menu nav a.active { color:#0071e3; }
     }
-    @media(prefers-reduced-motion:reduce) { .menu-icon i { transition:none; } }
+    @media(prefers-reduced-motion:reduce) { .menu-icon i, .menu-panel, .mobile-menu nav { transition:none; } }
 </style>
