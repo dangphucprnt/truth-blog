@@ -73,6 +73,13 @@ const articleSchema = {
                 #truth-blog-body :global(h4), #truth-blog-body :global(h5), #truth-blog-body :global(h6) { font-size: 18px; }
                 #truth-blog-body :global(figcaption), #truth-blog-body :global(figcaption p), #truth-blog-body :global(.caption), #truth-blog-body :global(.image-caption) { font-size: 12px; }
             }
+
+            #truth-blog-body :global(.truth-sources-heading) { font-size: 16px !important; line-height: 1.5; margin: 28px 0 10px; color: #1d1d1f; }
+            #truth-blog-body :global(.truth-source-entry), #truth-blog-body :global(.truth-source-entry *) { font-size: 13px !important; line-height: 1.65 !important; color: #1d1d1f !important; }
+            #truth-blog-body :global(.truth-source-entry) { margin-bottom: 12px; }
+            #truth-blog-body :global(.truth-source-entry li) { margin-bottom: 6px; }
+            #truth-blog-body :global(.truth-source-entry a) { text-decoration: none; }
+            #truth-blog-body :global(.truth-source-entry a:hover), #truth-blog-body :global(.truth-source-entry a:focus-visible) { text-decoration: underline; }
 </style>
 	</head>
 
@@ -98,5 +105,6 @@ const articleSchema = {
 		</main>
 		<Footer />
 	<script is:inline src="/blog-share-footer.js?v=20261004-responsive" defer></script>
+	<script is:inline src="/blog-sources.js?v=20261004-sources" defer></script>
 	</body>
 </html>
