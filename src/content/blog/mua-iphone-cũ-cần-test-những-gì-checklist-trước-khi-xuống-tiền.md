@@ -1,9 +1,9 @@
 ---
+category: iphone-cong-nghe
 title: Mua iPhone cũ cần test những gì? Checklist trước khi xuống tiền
 description: Checklist tương tác để kiểm tra iPhone.
 pubDate: 2026-10-06T11:50:00.000+07:00
 heroImage: https://static-images.vnncdn.net/vps_images_publish/000001/000003/2026/5/28/iphone-18-khong-ra-mat-nam-nay-nuoc-co-chien-luoc-cho-ai-va-iphone-gap-3478.jpg?width=0&s=m9Z78ojvoX8zb--RjmMuoQ
-category: iPhone - Công Nghệ
 ---
 Một chiếc iPhone cũ đẹp chưa chắc hoạt động tốt. Trước khi xuống tiền, hãy dành thời gian kiểm tra từng mục dưới đây. Bạn có thể chạm vào ô vuông hoặc nội dung để đánh dấu phần đã kiểm tra.
 
