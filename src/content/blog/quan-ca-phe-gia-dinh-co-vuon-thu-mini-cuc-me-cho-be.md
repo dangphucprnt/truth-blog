@@ -11,9 +11,9 @@ Tìm một quán cà phê để đi cùng con trẻ thường khó hơn chọn m
 
 Bill Aquarium Coffee, tại 505 Lê Văn Thọ, khu vực Gò Vấp, là một địa chỉ đáng tìm hiểu theo hướng này. Quán kết hợp mô hình cà phê sân vườn và thú mini, với hồ nước, cây xanh và bàn ngồi gần khu vực hồ. \[1]
 
-![Trẻ em cùng ba mẹ ngắm hồ cá đặc biệt](https://res.cloudinary.com/hhruk5fh/image/upload/v1791344785/photo_2026-10-04_19-57-59.jpg "Trẻ em cùng ba mẹ ngắm hồ cá đặc biệt")
-
-
+<!--truth-gallery:start:%7B%22size%22%3A%22wide%22%2C%22photos%22%3A%5B%7B%22alt%22%3A%22Tr%E1%BA%BB%20em%20c%C3%B9ng%20ba%20m%E1%BA%B9%20ng%E1%BA%AFm%20h%E1%BB%93%20c%C3%A1%20%C4%91%E1%BA%B7c%20bi%E1%BB%87t%22%2C%22caption%22%3A%22Tr%E1%BA%BB%20em%20c%C3%B9ng%20ba%20m%E1%BA%B9%20ng%E1%BA%AFm%20h%E1%BB%93%20c%C3%A1%20%C4%91%E1%BA%B7c%20bi%E1%BB%87t%22%2C%22src%22%3A%22https%3A%2F%2Fres.cloudinary.com%2Fhhruk5fh%2Fimage%2Fupload%2Fv1791344785%2Fphoto_2026-10-04_19-57-59.jpg%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fres.cloudinary.com%2Fhhruk5fh%2Fimage%2Fupload%2Fv1791344785%2Fphoto_2026-10-04_19-57-57.jpg%22%2C%22alt%22%3A%22H%E1%BB%93%20c%C3%A1%20nh%E1%BB%8F%20xinh%20c%C3%B3%20c%C3%A1c%20lo%E1%BA%A1i%20c%C3%A1%20r%E1%BA%A5t%20%C4%91%E1%BA%B7c%20bi%E1%BB%87t%22%2C%22caption%22%3A%22H%E1%BB%93%20c%C3%A1%20nh%E1%BB%8F%20xinh%20c%C3%B3%20c%C3%A1c%20lo%E1%BA%A1i%20c%C3%A1%20r%E1%BA%A5t%20%C4%91%E1%BA%B7c%20bi%E1%BB%87t%22%7D%5D%7D-->
+<div class="photo-gallery" data-photo-gallery data-size="wide" data-count="2"><div class="gallery-grid" aria-label="Bộ sưu tập ảnh"><figure><a href="https://res.cloudinary.com/hhruk5fh/image/upload/v1791344785/photo_2026-10-04_19-57-59.jpg" data-gallery-photo aria-label="Xem ảnh 1"><img src="https://res.cloudinary.com/hhruk5fh/image/upload/v1791344785/photo_2026-10-04_19-57-59.jpg" alt="Trẻ em cùng ba mẹ ngắm hồ cá đặc biệt" loading="lazy" decoding="async" /></a><figcaption>Trẻ em cùng ba mẹ ngắm hồ cá đặc biệt</figcaption></figure><figure><a href="https://res.cloudinary.com/hhruk5fh/image/upload/v1791344785/photo_2026-10-04_19-57-57.jpg" data-gallery-photo aria-label="Xem ảnh 2"><img src="https://res.cloudinary.com/hhruk5fh/image/upload/v1791344785/photo_2026-10-04_19-57-57.jpg" alt="Hồ cá nhỏ xinh có các loại cá rất đặc biệt" loading="lazy" decoding="async" /></a><figcaption>Hồ cá nhỏ xinh có các loại cá rất đặc biệt</figcaption></figure></div></div>
+<!--truth-gallery:end-->
 
 ## Một góc nhỏ, muôn điều để ngắm nhìn và sẻ chia
 
@@ -24,8 +24,6 @@ Với một tâm hồn trẻ thơ luôn tẻ nhạt sự tò mò, một gợn s�
 Bên cạnh đó, mô hình thú mini cũng là một điểm nhấn thú vị tại quán. Ngắm nhìn các loài vật là một bài học trực quan sinh động, nhưng việc chạm tay hay cho thú ăn luôn cần sự hướng dẫn và tuân thủ nội quy từ phía quán.
 
 ![Không gian từ ngoài cổng vào](https://res.cloudinary.com/hhruk5fh/image/upload/v1791344785/photo_2026-10-04_19-58-00.jpg "Không gian từ ngoài cổng vào")
-
-
 
 ## Điều đáng giá nhất: Khoảnh khắc trải nghiệm cùng nhau
 
@@ -45,11 +43,7 @@ Không gian cà phê có hồ nước và thú mini cũng không đồng nghĩa 
 
 Bill Aquarium Coffee là một gợi ý cho gia đình muốn tìm thêm một điểm hẹn ở Gò Vấp (phường Thông Tây Hội). Một buổi đi chơi đáng nhớ có thể bắt đầu rất giản dị, từ một câu hỏi của con và khoảng thời gian người lớn dành để cùng tìm câu trả lời.
 
-
-
 ![Những loài vật ở Bill Aquarium Coffee](https://res.cloudinary.com/hhruk5fh/image/upload/v1791344786/photo_2026-10-04_19-58-14.jpg "Những loài vật ở Bill Aquarium Coffee")
-
-
 
 ## Thông tin địa điểm
 
