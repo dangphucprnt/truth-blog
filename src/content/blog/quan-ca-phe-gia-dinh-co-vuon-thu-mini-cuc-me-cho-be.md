@@ -3,7 +3,7 @@ category: ca-phe
 title: Quán Cà Phê Gia Đình Có Vườn Thú Mini Cực Mê Cho Bé
 description: Bill Aquarium Coffee - quán cà phê gia đình lý tưởng với vườn thú
   mini, bể cá thủy sinh sinh động cho bé thỏa sức khám phá cuối tuần.
-pubDate: 2026-10-10T07:45:00.000+07:00
+pubDate: 2026-10-07T10:30:00.000+07:00
 heroImage: /blog-assets/img_5043.jpeg
 heroCaption: Trẻ em ngắm nhìn những loài vật trong vườn thú mini
 ---
