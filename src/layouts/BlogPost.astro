@@ -5,10 +5,11 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, heroAlt, heroCaption } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroAlt, heroCaption, gallery } = Astro.props;
 const pageURL = new URL(Astro.url.pathname, Astro.site).href;
 const articleSchema = {
     '@context': 'https://schema.org', '@type': 'BlogPosting',
@@ -99,7 +100,7 @@ const articleSchema = {
                     {heroCaption && <figcaption>{heroCaption}</figcaption>}
                 </figure>}
                 <div class="prose">
-                    <div id="truth-blog-body"><slot /></div>
+                    <div id="truth-blog-body"><PhotoGallery photos={gallery} /><slot /></div>
                 </div>
 			</article>
 		</main>

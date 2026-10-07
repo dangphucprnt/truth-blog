@@ -28,6 +28,11 @@ const blog = defineCollection({
 			heroImage: z.optional(image()),
             heroAlt: z.string().optional(),
             heroCaption: z.string().optional(),
+            gallery: z.array(z.object({
+                src: z.string().regex(/^(?:https:\/\/[^\s]+|\/(?!\/)[^\s]+)$/, 'Dùng link HTTPS hoặc đường dẫn /blog-assets/...'),
+                alt: z.string().optional(),
+                caption: z.string().optional(),
+            })).max(6, 'Bộ sưu tập tối đa 6 ảnh').optional(),
 		}),
 });
 

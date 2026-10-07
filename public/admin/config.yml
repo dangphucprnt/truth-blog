@@ -38,3 +38,16 @@ collections:
       - { label: "Mô tả ảnh đại diện", name: "heroAlt", widget: "string", required: false }
       - { label: "Chú thích dưới ảnh", name: "heroCaption", widget: "string", required: false }
       - { label: "Nội dung bài viết", name: "body", widget: "markdown" }
+      - label: "Bộ sưu tập ảnh (tối đa 6)"
+        name: "gallery"
+        widget: "list"
+        required: false
+        default: []
+        min: 0
+        max: 6
+        collapsed: true
+        summary: "{{fields.caption}} — {{fields.src}}"
+        fields:
+          - { label: "Ảnh", name: "src", widget: "image" }
+          - { label: "Mô tả ảnh", name: "alt", widget: "string", required: false }
+          - { label: "Chú thích", name: "caption", widget: "string", required: false }

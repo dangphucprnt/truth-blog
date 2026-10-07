@@ -1,0 +1,111 @@
+---
+type Photo = { src: string; alt?: string; caption?: string };
+const { photos = [] } = Astro.props as { photos?: Photo[] };
+const items = photos.slice(0, 6);
+---
+{items.length > 0 && <div class="photo-gallery" data-photo-gallery data-count={items.length}>
+    <div class="gallery-grid" aria-label="Bộ sưu tập ảnh">
+        {items.map((photo, index) => <figure>
+            <a href={photo.src} data-gallery-photo aria-label={`Xem ảnh ${index + 1}: ${photo.alt || photo.caption || 'Bộ sưu tập'}`}>
+                <img src={photo.src} alt={photo.alt || photo.caption || `Ảnh ${index + 1} trong bộ sưu tập`} loading="lazy" decoding="async" />
+            </a>
+            {photo.caption && <figcaption>{photo.caption}</figcaption>}
+        </figure>)}
+    </div>
+    <template><dialog class="gallery-viewer" aria-label="Xem ảnh lớn">
+        <div class="viewer-content">
+            <button type="button" class="viewer-close" aria-label="Đóng ảnh">×</button>
+            <img class="viewer-image" alt="" />
+            <p class="viewer-caption"></p>
+            <p class="viewer-error" role="status" hidden>Không tải được ảnh, vui lòng thử ảnh khác hoặc mở đường dẫn gốc.</p>
+            <div class="viewer-controls">
+                <button type="button" class="viewer-prev" aria-label="Ảnh trước">‹</button>
+                <span class="viewer-counter" aria-live="polite"></span>
+                <button type="button" class="viewer-next" aria-label="Ảnh tiếp theo">›</button>
+            </div>
+        </div>
+    </dialog></template>
+</div>}
+<style>
+    .photo-gallery { margin: 28px 0; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+    .gallery-grid figure { margin: 0 !important; min-width: 0; grid-column: span 2; }
+    .gallery-grid a { display: block; overflow: hidden; border-radius: 10px; background: #8882; aspect-ratio: 4 / 3; }
+    .gallery-grid img { width: 100%; height: 100% !important; object-fit: cover; display: block; border-radius: 0 !important; transition: transform 220ms ease; }
+    .gallery-grid a:hover img { transform: scale(1.025); }
+    .gallery-grid a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    .gallery-grid figcaption { font-size: 13px; margin-top: 6px; line-height: 1.5; text-align: left; }
+    [data-count="1"] figure { grid-column: 1 / -1; }
+    [data-count="1"] .gallery-grid a { aspect-ratio: 16 / 10; }
+    [data-count="2"] figure, [data-count="3"] figure, [data-count="4"] figure, [data-count="5"] figure { grid-column: span 3; }
+    [data-count="3"] figure:first-child, [data-count="5"] figure:first-child { grid-column: 1 / -1; }
+    [data-count="3"] figure:first-child a, [data-count="5"] figure:first-child a { aspect-ratio: 2 / 1; }
+    .gallery-viewer { border: 0; padding: 0; background: #181818; color: #fff; width: min(1100px, calc(100vw - 24px)); max-width: none; max-height: calc(100dvh - 24px); border-radius: 14px; overflow: auto; }
+    .gallery-viewer::backdrop { background: rgb(0 0 0 / .8); }
+    .gallery-viewer[open] { animation: gallery-open 180ms ease-out; }
+    .viewer-content { position: relative; padding: 56px 12px 12px; }
+    .viewer-image { display: block; width: 100%; height: min(70dvh, 800px) !important; object-fit: contain; border-radius: 0 !important; }
+    .viewer-close, .viewer-controls button { border: 0; color: #fff; background: #ffffff1a; width: 44px; height: 44px; border-radius: 50%; font: 32px/1 system-ui; cursor: pointer; touch-action: manipulation; }
+    .viewer-close { position: absolute; top: 8px; right: 8px; }
+    .viewer-controls { display: flex; align-items: center; justify-content: center; gap: 24px; }
+    .viewer-controls button:disabled { visibility: hidden; }
+    .viewer-caption, .viewer-error { text-align: center !important; font-size: 14px !important; margin: 10px 0 !important; }
+    .viewer-counter { font-size: 14px; }
+    @keyframes gallery-open { from { opacity: 0; transform: translateY(8px) scale(.99); } to { opacity: 1; transform: none; } }
+    @media (max-width: 600px) { .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .gallery-grid figure { grid-column: span 1; } [data-count="1"] figure, [data-count="3"] figure:first-child, [data-count="5"] figure:first-child { grid-column: 1 / -1; } }
+    @media (prefers-reduced-motion: reduce) { .gallery-viewer[open] { animation: none; } .gallery-grid img { transition: none; } }
+</style>
+<script>
+function initPhotoGalleries() {
+    document.querySelectorAll<HTMLElement>('[data-photo-gallery]').forEach(gallery => {
+        if (gallery.dataset.ready) return;
+        const template = gallery.querySelector<HTMLTemplateElement>('template');
+        const dialog = template?.content.querySelector<HTMLDialogElement>('dialog')?.cloneNode(true) as HTMLDialogElement | undefined;
+        if (!dialog || typeof dialog.showModal !== 'function') return;
+        gallery.append(dialog);
+        gallery.dataset.ready = 'true';
+        const links = Array.from(gallery.querySelectorAll<HTMLAnchorElement>('[data-gallery-photo]'));
+        const image = dialog.querySelector<HTMLImageElement>('.viewer-image')!;
+        const caption = dialog.querySelector<HTMLElement>('.viewer-caption')!;
+        const counter = dialog.querySelector<HTMLElement>('.viewer-counter')!;
+        const error = dialog.querySelector<HTMLElement>('.viewer-error')!;
+        const previous = dialog.querySelector<HTMLButtonElement>('.viewer-prev')!;
+        const next = dialog.querySelector<HTMLButtonElement>('.viewer-next')!;
+        let current = 0, opener: HTMLAnchorElement | undefined;
+        let scrollY = 0, originalStyle: string | null = null;
+        function show(index: number) {
+            current = (index + links.length) % links.length;
+            const thumb = links[current].querySelector('img')!;
+            error.hidden = true;
+            image.alt = thumb.alt;
+            image.src = links[current].href;
+            caption.textContent = links[current].closest('figure')?.querySelector('figcaption')?.textContent || '';
+            counter.textContent = `${current + 1} / ${links.length}`;
+            previous.disabled = next.disabled = links.length < 2;
+        }
+        image.addEventListener('error', () => { error.hidden = false; });
+        links.forEach((link, index) => link.addEventListener('click', event => {
+            if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+            event.preventDefault();
+            opener = link;
+            show(index);
+            scrollY = window.scrollY;
+            originalStyle = document.body.getAttribute('style');
+            dialog.showModal();
+            Object.assign(document.body.style, { position: 'fixed', top: `-${scrollY}px`, width: '100%', overflow: 'hidden' });
+        }));
+        dialog.querySelector('.viewer-close')!.addEventListener('click', () => dialog.close());
+        previous.addEventListener('click', () => show(current - 1));
+        next.addEventListener('click', () => show(current + 1));
+        dialog.addEventListener('keydown', event => { if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); show(current + (event.key === 'ArrowRight' ? 1 : -1)); } });
+        dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
+        dialog.addEventListener('close', () => {
+            if (originalStyle === null) document.body.removeAttribute('style'); else document.body.setAttribute('style', originalStyle);
+            window.scrollTo({ top: scrollY, behavior: 'instant' });
+            opener?.focus({ preventScroll: true });
+        });
+    });
+}
+initPhotoGalleries();
+document.addEventListener('astro:page-load', initPhotoGalleries);
+</script>
