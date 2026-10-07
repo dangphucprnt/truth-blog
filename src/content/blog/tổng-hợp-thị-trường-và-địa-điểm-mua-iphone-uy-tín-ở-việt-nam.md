@@ -29,7 +29,7 @@ Các đại lý chính hãng (Thế Giới Di Động, FPT Shop, CellphoneS, Sho
 | Hệ thống / Kênh | Điểm đặc trưng & Chiến lược Trade-in |
 | :--- | :--- |
 | **Apple Trade In** [1] | Định giá dựa trên tình trạng thực tế; người dùng có quyền từ chối nếu cảm thấy bị ép giá. Biên độ giá thu thường thấp hơn đại lý ngoài. |
-| ** FPT Shop ** [2] | Đưa ra cam kết "Bao Giá" – sẵn sàng bù tiền chênh lệch nếu khách tìm được nơi thu mua máy cũ giá cao hơn. |
+| **FPT Shop** [2] | Đưa ra cam kết "Bao Giá" – sẵn sàng bù tiền chênh lệch nếu khách tìm được nơi thu mua máy cũ giá cao hơn. |
 | **Thế Giới Di Động (TopZone)** [3] | Tối ưu độ phủ cửa hàng. Cho phép **gom nhiều máy cũ** (tối đa 3 máy) để đổi lấy **1 máy mới**, áp dụng chính sách trợ giá theo phần trăm giá trị máy. |
 | **Di Động Việt** [4] | Đánh mạnh vào tiêu chí chấp nhận **thu cả máy cũ trầy xước/hư hỏng nặng**, đi kèm trợ giá riêng cho khách hàng thân thiết và chính sách mua máy mới trước - bán máy cũ sau. |
 
