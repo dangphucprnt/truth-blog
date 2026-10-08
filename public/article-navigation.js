@@ -1,5 +1,13 @@
 (function () {
   const body = document.getElementById('truth-blog-body');
+  // Remove obsolete generated toggles from earlier versions, preserve every content node.
+  if (body) body.querySelectorAll('details.article-section').forEach(details => {
+    const summary = details.querySelector(':scope > summary');
+    if (!summary || !summary.querySelector(':scope > h4, :scope > h5, :scope > h6')) return;
+    Array.from(summary.childNodes).forEach(node => details.before(node));
+    Array.from(details.childNodes).filter(node => node !== summary).forEach(node => details.before(node));
+    details.remove();
+  });
   if (!body || body.dataset.navigationReady) return;
   body.dataset.navigationReady = 'true';
   const headings = Array.from(body.querySelectorAll('h1,h2,h3,h4,h5,h6')).filter(h => !h.closest('.photo-gallery') && !/^(nguồn|nguồn tham khảo|sources)\s*:?$/i.test(h.textContent.trim()));
