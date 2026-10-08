@@ -14,9 +14,10 @@
     used.add(id);
   }
   const top = headings.filter(h => h.parentElement === body);
-  const level = Math.min(...top.map(h => Number(h.tagName[1])));
-  // Group only major sections, keep subheadings inside their parent section.
-  for (const heading of top.filter(h => Number(h.tagName[1]) === level)) {
+  // H1–H3 can collapse, H4–H6 remain regular headings inside their section.
+  // Process in document order so H2/H3 sections nest inside their parents.
+  for (const heading of top.filter(h => Number(h.tagName[1]) <= 3)) {
+    const level = Number(heading.tagName[1]);
     const details = document.createElement('details');
     details.className = 'article-section';
     details.open = true;
