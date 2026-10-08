@@ -25,6 +25,7 @@ const articleSchema = {
 <html lang="vi">
 	<head>
         <link rel="stylesheet" href="/photo-gallery.css?v=20261007-inline" />
+        <link rel="stylesheet" href="/article-navigation.css?v=20261008-1" />
 		<BaseHead title={title} description={description} image={heroImage} type="article" ads={true} />
         <meta property="article:published_time" content={pubDate.toISOString()} />
         {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
@@ -109,5 +110,6 @@ const articleSchema = {
 	<script is:inline src="/blog-share-footer.js?v=20261004-responsive" defer></script>
 	<script is:inline src="/blog-sources.js?v=20261004-sources" defer></script>
 	<script is:inline src="/photo-gallery.js?v=20261007-inline" defer></script>
+    <script is:inline src="/article-navigation.js?v=20261008-1" defer></script>
 	</body>
 </html>

@@ -1,0 +1,16 @@
+.article-toc { background:#f3f4f6; color:#1d1d1f; border-radius:12px; padding:18px 22px; margin:0 0 28px; }
+.article-toc > summary { cursor:pointer; font-size:18px; font-weight:650; }
+#truth-blog-body .article-toc ul { list-style:none; padding:0; margin:12px 0 0; }
+#truth-blog-body .article-toc li { margin:8px 0; }
+#truth-blog-body .article-toc a { color:inherit; text-decoration:none; font-size:15px; line-height:1.5; display:block; padding:3px 0; }
+.article-toc a:hover { text-decoration:underline; }
+.article-section { margin:26px 0; }
+.article-section > summary { cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px; }
+.article-section > summary::-webkit-details-marker { display:none; }
+.article-section > summary::before { content:''; flex:0 0 7px; width:7px; height:7px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(-45deg); transition:transform .16s ease; }
+.article-section[open] > summary::before { transform:rotate(45deg); }
+#truth-blog-body .article-section > summary > :is(h1,h2,h3,h4,h5,h6) { margin:0 0 14px; }
+#truth-blog-body :is(h1,h2,h3,h4,h5,h6)[id] { scroll-margin-top:100px; }
+.article-section > summary:focus-visible,.article-toc > summary:focus-visible,.article-toc a:focus-visible { outline:2px solid #666; outline-offset:4px; border-radius:3px; }
+@media(prefers-reduced-motion:reduce) { .article-section > summary::before { transition:none; } }
+@media print { .article-toc { display:none; } .article-section::details-content { display:block; content-visibility:visible; } }
